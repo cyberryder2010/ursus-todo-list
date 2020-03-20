@@ -32,19 +32,20 @@ function render() {
   console.log("Render");
 
   $todoListItem.empty();
-  for (let task of tasks) {
-    let completeBtn = '<button class="js-btn-complete">Complete</button';
+  for (let i = 0; i < tasks.length; i++) {
+    let completeBtn = `<button data-index="${i}" class="js-btn-complete">Complete</button`;
 
-    if (task.completed === true) {
-      completeBtn = '<button class="js-btn-complete"disabled>Complete</button';
+    if (tasks.completed === true) {
+      completeBtn = `<button data-index="${i}" class="js-btn-complete"disabled>Complete</button`;
     }
     $todoListItem.append(`
       <li>
-        ${task.name} ${completeBtn}
+        ${tasks[i].name} ${completeBtn}
       </li>
     `);
   }
 }
 function clickCompleteBtn(event) {
-  console.log("Complete Click");
+  const itemIndex = $(this).data("index");
+  console.log("Complete Click", itemIndex);
 }
